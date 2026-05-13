@@ -7,6 +7,8 @@ import {
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
 
+import { renderPaymentSummary } from "./paymentSummary.js";
+
 export function renderOrderSummary() {
   let cartHTMLSummary = "";
   cart.forEach((cartItem) => {
@@ -96,7 +98,12 @@ export function renderOrderSummary() {
     button.addEventListener("click", () => {
       const productId = button.dataset.productId;
       removeFromCart(productId);
-      document.querySelector(`.js-cart-item-container-${productId}`).remove();
+      const container = document.querySelector(
+        `.js-cart-item-container-${productId}`,
+      );
+      container.remove();
+
+      renderPaymentSummary();
     });
   });
 
@@ -105,6 +112,7 @@ export function renderOrderSummary() {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 }
