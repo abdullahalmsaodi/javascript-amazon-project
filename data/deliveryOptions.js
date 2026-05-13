@@ -23,5 +23,5 @@ export function getDeliveryOption(deliveryOptionId) {
       matchingDeliveryOption = deliveryOption;
     }
   });
-  return matchingDeliveryOption;
+  return matchingDeliveryOption || deliveryOptions[0];
 }
