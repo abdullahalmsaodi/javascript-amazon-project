@@ -66,7 +66,7 @@ export function renderPaymentSummary() {
         const response = await fetch("https://supersimplebackend.dev/orders", {
           method: "POST",
           headers: {
-            "Content-Type": "application/josn",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             cart: cart,
@@ -74,12 +74,11 @@ export function renderPaymentSummary() {
         });
 
         const order = await response.json();
-        console.log(JSON.stringify(cart));
         addOrder(order);
       } catch (error) {
         console.log("Unexpected error. Please try again");
       }
 
-      window.location.href = "orders.html";
+      // window.location.href = "orders.html";
     });
 }
